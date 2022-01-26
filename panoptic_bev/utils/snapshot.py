@@ -38,20 +38,20 @@ def pre_train_from_snapshots(model, snapshots, modules, rank):
                 raise ValueError("Unrecognized network module {}".format(module_name))
 
 
-def resume_from_snapshot(model, snapshot, modules):
+def resume_from_snapshot(model, snapshot, modules, strict=False):
     snapshot = torch.load(snapshot, map_location="cpu")
     state_dict = snapshot["state_dict"]
 
     for module in modules:
         if module in state_dict:
-            _load_pretraining_dict(getattr(model, module), state_dict[module])
+            _load_pretraining_dict(getattr(model, module), state_dict[module], strict)
         else:
             raise KeyError("The given snapshot does not contain a state_dict for module '{}'".format(module))
 
     return snapshot
 
 
-def _load_pretraining_dict(model, state_dict):
+def _load_pretraining_dict(model, state_dict, strict=False):
     """Load state dictionary from a pre-training snapshot
 
     This is an even less strict version of `model.load_state_dict(..., False)`, which also ignores parameters from
@@ -72,4 +72,4 @@ def _load_pretraining_dict(model, state_dict):
             if v.shape != state_dict[k].shape:
                 del state_dict[k]
  
-    model.load_state_dict(state_dict, False)
+    model.load_state_dict(state_dict, strict)

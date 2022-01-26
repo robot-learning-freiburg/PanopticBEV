@@ -8,16 +8,20 @@ Our approach, PanopticBEV, is the state-of-the-art approach for generating panop
 
 If you find this code useful for your research, please consider citing our paper:
 ```
-@article{gosala2021bev,
-  title={Bird's-Eye-View Panoptic Segmentation Using Monocular Frontal View Images},
+@article{gosala21bev,
   author={Gosala, Nikhil and Valada, Abhinav},
-  journal={arXiv preprint arXiv:2108.03227},
-  year={2021}
-}
+  journal={IEEE Robotics and Automation Letters}, 
+  title={Bird’s-Eye-View Panoptic Segmentation Using Monocular Frontal View Images}, 
+  year={2022},
+  volume={7},
+  number={2},
+  pages={1968-1975},
+  doi={10.1109/LRA.2022.3142418}}
 ```
 
 ## Relevant links
-- [Paper](https://arxiv.org/abs/2108.03227)
+- [Paper (IEEE)](https://ieeexplore.ieee.org/document/9681287)
+- [Paper (arXiv)](https://arxiv.org/abs/2108.03227)
 - [Video](https://www.youtube.com/watch?v=HCJ1Hi_y9x8)
 - [Project Webpage](http://panoptic-bev.cs.uni-freiburg.de/)
 
@@ -45,16 +49,29 @@ d. Install the PanopticBEV code.
 ```shell
 python3 setup.py develop
 ```
-## Obtaining the datasets
-Please download the datasets from [here](http://panoptic-bev.cs.uni-freiburg.de/#dataset) and follow the instructions provided in the encapsulated readme file.
+## PanopticBEV datasets
+### KITTI-360
+- Download the Kitti-360 dataset from [here](http://www.cvlibs.net/datasets/kitti-360/).
+- Download the Kitti-360 PanopticBEV dataset from [here](http://panoptic-bev.cs.uni-freiburg.de/#dataset).
+- In the training and evaluation scripts:
+  - Modify the `dataset_root_dir` parameter to point to the location of the original Kitti-360 dataset.
+  - Modify the `seam_root_dir` parameter to point to the location of the Kitti-360 PanopticBEV dataset.
 
-## Code Execution
+### nuScenes
+- Download the nuScenes dataset from [here](https://nuscenes.org/nuscenes).
+- Download the nuScenes PanopticBEV dataset from [here](http://panoptic-bev.cs.uni-freiburg.de/#dataset).
+- In the training and evaluation scripts:
+  - Modify the `dataset_root_dir` parameter to point to the location of the original nuScenes dataset.
+  - Modify the `seam_root_dir` parameter to point to the location of the nuScenes PanopticBEV dataset.
+
+
+## Code execution
 
 ### Configuration parameters
 The configuration parameters of the model such as the learning rate, batch size, and dataloader options are stored in the `experiments/config` folder.
 If you intend to modify the model parameters, please do so here.
 
-### Training and Evaluation
+### Training and evaluation
 The training and evaluation python codes along with the shell scripts to execute them are provided in the `scripts` folder. 
 Before running the shell scripts, please fill in the missing parameters with your computer-specific data paths and parameters.
 
