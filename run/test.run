@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --workdir /laubo
+#SBATCH --workdir /scratch/laubo
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
