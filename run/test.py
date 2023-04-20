@@ -14,5 +14,5 @@ print('Hello!')
 
 import torch
 
-print(f'{torch.cuda.is_available() = }')
-print(f'{torch.cuda.device_count() = }')
+print(torch.cuda.is_available())
+print(torch.cuda.device_count())
